@@ -1,5 +1,28 @@
 Problem Statement:
 ------------------
+As per details shared by the development team, the new application release has some dependencies on the back end.
+There are some packages/services that need to be installed on all app servers under Stratos Datacenter.
+As per requirements please perform the following steps:
 
+a. Install nscd package on all the application servers.
+b. Once installed, make sure it is enabled to start during boot.
 ------------------
 Solution:
+Login to respective application server to install postfix on it.
+for example: 
+stapp01 -
+Command to login into stapp01 application server
+    thor@jump_host ~$ sudo ssh tony@stapp01
+Command to install postfix on server
+    [tony@stapp01 ~]$ sudo yum install -y nscd
+Command to check package install on system or not 
+    [tony@stapp01 ~]$ yum list nscd
+Command to check service status
+    [tony@stapp01 ~]$ systemctl status nscd
+Command to start the service
+    [tony@stapp01 ~]$ sudo systemctl start nscd
+Command to enable the service on boot
+    [tony@stapp01 ~]$ sudo systemctl enable nscd
+
+Check the status again after starting the service.
+Repeat the same steps for rest of the application servers.
